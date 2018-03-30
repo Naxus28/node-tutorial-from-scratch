@@ -1,4 +1,7 @@
 // this script demonstrates how we can interact with the process via stdin and stdout
+// these are asynchronous, non-blocking operations, meaning the process doesn't hang until
+// one operation is completed to start performing the other--this is what makes 
+// node.js a good option to write apis
 let questions = [
   'What is your name?',
   'What do you like to do?',
