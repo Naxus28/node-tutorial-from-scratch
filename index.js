@@ -1,27 +1,48 @@
-// node has a global object that works similarly to the browser's window object
-// there are some differences though
 
-let name = 'Josh';
-console.log(name); // Josh
+/* the process object is available globally and gives us the ability to work with the current node process.
+ * this object allows you to (among other things):  
+ * 1. get environment information such as environment variables 
+ * 2. communicate with the terminal or parent processes through standard input and standard output. 
+ * 3. exit current process. 
+ */
+console.log(process.version); // your node version
+console.log(process.env); // an object with your environment settings
+console.log(process.env.USER); // i.e. your user name
 
-// undefined -- whereas on regular js (on the browser) window.name would be 'Josh'
-// this is because 'name' is scoped to this module (this file) and are not added to the global object like in the browser
-console.log(global.name); 
-
-// if we want to add a variable to the global object we need to do it explicitly
-global.name = 'Josh';
-
-console.log(global.name); // Josh
-
-// NOTE: we can use most js methods in node, such as substring, slice, splice, etc
-console.log(name.slice(1)); // osh
+// if you want to access the process on the terminal,
+// enter the node REPL by typing 'node' and hitting 'enter'
+// then type 'process.env' and hit enter
 
 
-// THERE ARE OTHER GLOBAL OBJECTS YOU SHOULD KNOW ABOUT 
-// BELOW ARE SOME IMPORTANT ONES. FOR A COMPLETE LIST, FOLLOW THIS LINK: https://nodejs.org/api/globals.html
+/*
+ * IMPORTANT NOTE 
+ * for development purposes you can set 'NODE_ENV' on the terminal or on this module
+ * and have development and production tasks executed depending on the environment you set
+ * 'NODE_ENV' is not set by default on 'process.env' object (why should it?)
+ * console.log(process.env.NODE_ENV); // undefined unless you explicitly set it
+ * To set it:
+ * • on the terminal (mac) 'export NODE_ENV=development', (windows) 'SET NODE_ENV=development'
+ * • on the module process.env.NODE_ENV=development
+ */
 
-console.log(__dirname); // the path to the directory name of the current module
-console.log(__filename); // the path to the filename of the current module
-console.log(exports); // short for module.exports -- allows you to export modules (that can then be imported on other modules)
-// console.log(require());// allows you to import modules that have been exported -- need the module path passed as argument
-console.log(process);// gives you access to the current node process
+function checkEnv() {
+  if (process.env.NODE_ENV==='development') {
+    console.log('you set the environment to development');
+  } else if (process.env.NODE_ENV==='production') {
+    console.log('you set the environment to production');
+  } else {
+    console.log('you didn\'t set process.env.NODE_ENV');
+  }
+}
+
+checkEnv(); // process.env.NODE_ENV was not set
+
+// set development env
+process.env.NODE_ENV='development';
+checkEnv(); //development
+
+// set production env
+process.env.NODE_ENV='production';
+checkEnv(); //production
+
+
