@@ -1,27 +1,25 @@
-// node has a global object that works similarly to the browser's window object
-// there are some differences though
+/* process.stdin and process.stdout allow us to interact with the process while it is running 
+ * • process.stdin allows you to get arguments from the terminal and 
+ * act on it via a callback function (if you want your program to 'respond'
+ * to a user based on the user input, for instance)
+ *
+ * • process.stdout lets out write to the terminal from your program
+ */
 
-let name = 'Josh';
-console.log(name); // Josh
+process.stdout.write('Write something \n');
+process.stdout.write(' > ');
 
-// undefined -- whereas on regular js (on the browser) window.name would be 'Josh'
-// this is because 'name' is scoped to this module (this file) and are not added to the global object like in the browser
-console.log(global.name); 
-
-// if we want to add a variable to the global object we need to do it explicitly
-global.name = 'Josh';
-
-console.log(global.name); // Josh
-
-// NOTE: we can use most js methods in node, such as substring, slice, splice, etc
-console.log(name.slice(1)); // osh
+// the 'on' method allows us to listen for events
+process.stdin.on('data', data => {
+  console.log('data: ', data); // this data is a Buffer object, so we need to convert it to a string
+  console.log(data.toString());// need to trim the data to get a 'clean' string, without line breaks
+  console.log(data.toString().trim());
+  // if we don't explicitly exit the process it will continue running 
+  // (comment out the line below and check how the process hangs on the terminal)
+  process.exit();
+});
 
 
-// THERE ARE OTHER GLOBAL OBJECTS YOU SHOULD KNOW ABOUT 
-// BELOW ARE SOME IMPORTANT ONES. FOR A COMPLETE LIST, FOLLOW THIS LINK: https://nodejs.org/api/globals.html
 
-console.log(__dirname); // the path to the directory name of the current module
-console.log(__filename); // the path to the filename of the current module
-console.log(exports); // short for module.exports -- allows you to export modules (that can then be imported on other modules)
-// console.log(require());// allows you to import modules that have been exported -- need the module path passed as argument
-console.log(process);// gives you access to the current node process
+
+
