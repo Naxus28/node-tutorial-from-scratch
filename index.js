@@ -1,27 +1,26 @@
-// node has a global object that works similarly to the browser's window object
-// there are some differences though
+ /* the process object allows you to interact with the terminal window
+  * through the 'argv' property, which is an array of the arguments used on the terminal
+  * i.e. if you type 'node index.js' on the terminal, 
+  * process.argv returns the path to the 'node' command and the path to 'index.js'
+  * console.log(process.argv);
+  */
+  
 
-let name = 'Josh';
-console.log(name); // Josh
+// Try this: on the terminal, pass such vars as
+// node index --user "Your name" --greeting "Welcome"  
+// params prefixed with "--" will be used as flags so we can get the values we want (the name and the greeting)
+// "" on the arguments are optional
 
-// undefined -- whereas on regular js (on the browser) window.name would be 'Josh'
-// this is because 'name' is scoped to this module (this file) and are not added to the global object like in the browser
-console.log(global.name); 
+function getFromREPL(flag) {
+  let index = process.argv.indexOf(flag);
+  return index === -1 ? null : process.argv[index+1];
+}
 
-// if we want to add a variable to the global object we need to do it explicitly
-global.name = 'Josh';
+let user = getFromREPL('--user');
+let greeting = getFromREPL('--greeting');
 
-console.log(global.name); // Josh
-
-// NOTE: we can use most js methods in node, such as substring, slice, splice, etc
-console.log(name.slice(1)); // osh
-
-
-// THERE ARE OTHER GLOBAL OBJECTS YOU SHOULD KNOW ABOUT 
-// BELOW ARE SOME IMPORTANT ONES. FOR A COMPLETE LIST, FOLLOW THIS LINK: https://nodejs.org/api/globals.html
-
-console.log(__dirname); // the path to the directory name of the current module
-console.log(__filename); // the path to the filename of the current module
-console.log(exports); // short for module.exports -- allows you to export modules (that can then be imported on other modules)
-// console.log(require());// allows you to import modules that have been exported -- need the module path passed as argument
-console.log(process);// gives you access to the current node process
+if (!user || !greeting) {
+  console.log('No good!');
+} else {
+  console.log(`${greeting} ${user}`);
+}
