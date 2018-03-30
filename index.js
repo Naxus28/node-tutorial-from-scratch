@@ -39,10 +39,10 @@ checkEnv(); // process.env.NODE_ENV was not set
 
 // set development env
 process.env.NODE_ENV='development';
-checkEnv(); //development
+checkEnv(); //you set the environment to development
 
 // set production env
 process.env.NODE_ENV='production';
-checkEnv(); //production
+checkEnv(); //you set the environment to production
 
 
