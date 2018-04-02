@@ -1,5 +1,7 @@
-# node-tutorial-from-scratch
+# process
 
-A node tutorial from the ground up, covering core concepts of node.js, node-express servers, best practices, and design patterns.
+The process object allows you to interact with the terminal window
+through the 'argv' property, which is an array of the arguments used on the terminal
 
-Each branch covers a different topic, specified by the branch name. If you are a beginner, start from the first branch. If you are a node developer who wants to revise a topic, just checkout to the branch of your interest.
+For instance, when you run a file using the command 'node someFile', the first element in the arg array is the path to the 'node' command (the binary file) and the second is the path to 'someFile'.
+  
