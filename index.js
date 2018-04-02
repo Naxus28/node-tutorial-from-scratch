@@ -10,7 +10,8 @@ const user = {
 const questions = [
   'What is your name? ',
   'What is your age?',
-  'What do you like to do? '
+  'What do you like to do? ',
+  'What else do you like to do? ("exit" to stop) '
 ];
 
 // alternatively, we could have used rl.setPrompt instead of rl.question
@@ -18,26 +19,32 @@ const questions = [
 rl.question(questions[0], (answer) => {
   user.name = answer;
 
-  rl.question(`Hi ${name}. ${questions[1]} `, (answer) => {
+  // ask another question
+  rl.question(`Hi ${answer}. ${questions[1]} `, (answer) => {
     user.age = answer;
 
+    // set and use new prompt -- similar to 'question'
     rl.setPrompt(questions[2])
     rl.prompt();
 
+    // listen to 'line' event
     rl.on('line', (answer) => {
        if (answer === 'exit') {
-        rl.close();
+        rl.close(); // close 'readline' if user types 'exit'
        } else {
         user.hobbies.push(answer);
-        rl.setPrompt('What else do you like to do? ("exit" to stop) ')
+
+        // set and use new prompt
+        rl.setPrompt(questions[3])
         rl.prompt();
        }
     });
 
   });
-
-  rl.on('close', () => {
-    console.log('%s is %d. They like to %j.', user.name, user.age, user.hobbies);
-    process.exit();
-  })
 });
+
+// listen to the close event
+rl.on('close', () => {
+  console.log('%s is %d. They like to %j.', user.name, user.age, user.hobbies);
+  process.exit();
+})
