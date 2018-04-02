@@ -4,6 +4,7 @@
  * 1. get environment information such as environment variables 
  * 2. communicate with the terminal or parent processes through standard input and standard output. 
  * 3. exit current process. 
+ * https://nodejs.org/api/process.html
  */
 console.log(process.version); // your node version
 console.log(process.env); // an object with your environment settings
