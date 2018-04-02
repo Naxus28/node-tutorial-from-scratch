@@ -1,5 +1,7 @@
-# node-tutorial-from-scratch
+# process.stdin and process.stdout
 
-A node tutorial from the ground up, covering core concepts of node.js, node-express servers, best practices, and design patterns.
-
-Each branch covers a different topic, specified by the branch name. If you are a beginner, start from the first branch. If you are a node developer who wants to revise a topic, just checkout to the branch of your interest.
+process.stdin and process.stdout allow us to interact with the process while it is running 
+ • process.stdin allows you to get arguments from the terminal and 
+ act on it via a callback function (if you want your program to 'respond'
+ to a user based on the user input, for instance)
+ • process.stdout lets out write to the terminal from your program
