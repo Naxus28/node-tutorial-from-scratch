@@ -1,4 +1,3 @@
-
 console.log(process.version); // your node version
 console.log(process.env); // an object with your environment settings
 console.log(process.env.USER); // i.e. your user name

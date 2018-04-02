@@ -20,3 +20,4 @@ console.log(process.env.NODE_ENV); // undefined unless you explicitly set it
 To set it:
 • on the terminal (mac) 'export NODE_ENV=development', (windows) 'SET NODE_ENV=development'
 • on the module process.env.NODE_ENV=development
+
