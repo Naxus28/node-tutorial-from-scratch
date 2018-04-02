@@ -27,4 +27,3 @@ node will look for '/Users/gabrielferraz/Desktop/practice/node_modules', then '/
 
 > Note4: we can download a module from the node website or from github. If the module comes from npm, we use the package name and npm to install (i.e. 'npm install winston'). If the module comes github we need to provide the repository url and a pound sign followed by the branch: 'https://github.com/winstonjs/winston#master' or 'https://github.com/winstonjs/winston/tarball/master'
 
-
