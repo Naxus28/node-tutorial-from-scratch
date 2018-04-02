@@ -13,14 +13,12 @@ const questions = [
   'What do you like to do? '
 ];
 
-const greeting = (name) => `Hi ${name}.`;
-
 // alternatively, we could have used rl.setPrompt instead of rl.question
-// as we do below
+// as we do down below
 rl.question(questions[0], (answer) => {
   user.name = answer;
 
-  rl.question(`${greeting(answer)} ${questions[1]} `, (answer) => {
+  rl.question(`Hi ${name}. ${questions[1]} `, (answer) => {
     user.age = answer;
 
     rl.setPrompt(questions[2])
