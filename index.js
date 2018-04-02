@@ -1,27 +1,29 @@
-// node has a global object that works similarly to the browser's window object
-// there are some differences though
+// node has the same timing functions as js
+// setTimeout, setInterval, clearInterval
+// as well as its own timing functions such as setImmediate and clearImmediate
+// https://nodejs.org/api/timers.html
 
-let name = 'Josh';
-console.log(name); // Josh
+var currentTime = 0;
+var waitInterval = 10;
+var percentageTime = 0;
+var totalTime = 5000;
 
-// undefined -- whereas on regular js (on the browser) window.name would be 'Josh'
-// this is because 'name' is scoped to this module (this file) and are not added to the global object like in the browser
-console.log(global.name); 
+function writeWaitingPercent(p) {
+  process.stdout.clearLine(); // clears the line on terminal
+  process.stdout.cursorTo(0); // moves cursor (and content printed on terminal) back to index 0
+  process.stdout.write(`Completed processing... ${p}%`);
+}
 
-// if we want to add a variable to the global object we need to do it explicitly
-global.name = 'Josh';
-
-console.log(global.name); // Josh
-
-// NOTE: we can use most js methods in node, such as substring, slice, splice, etc
-console.log(name.slice(1)); // osh
+var timer = setInterval(function() {
+  currentTime += waitInterval;
+  percentageTime = Math.floor((currentTime/totalTime) * 100);
+  writeWaitingPercent(percentageTime)
+}, waitInterval);
 
 
-// THERE ARE OTHER GLOBAL OBJECTS YOU SHOULD KNOW ABOUT 
-// BELOW ARE SOME IMPORTANT ONES. FOR A COMPLETE LIST, FOLLOW THIS LINK: https://nodejs.org/api/globals.html
+setTimeout(function() {
+  clearInterval(timer);
+  writeWaitingPercent(100);
+  console.log('\ndone'); 
+}, totalTime);
 
-console.log(__dirname); // the path to the directory name of the current module
-console.log(__filename); // the path to the filename of the current module
-console.log(exports); // short for module.exports -- allows you to export modules (that can then be imported on other modules)
-// console.log(require());// allows you to import modules that have been exported -- need the module path passed as argument
-console.log(process);// gives you access to the current node process
