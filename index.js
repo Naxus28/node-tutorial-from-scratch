@@ -1,59 +1,51 @@
-var PI = Math.PI;
+const readline = require('readline'); // get the module
+const rl = readline.createInterface(process.stdin, process.stdout); // creates the readline interface
 
-exports.area = function(r) {
-  return PI * r * r;
-}
+const user = {
+  name: '',
+  age: 0,
+  hobbies: []
+};
 
-exports.circumference = function(r) {
-  return 2 * PI * r;
-}
+const questions = [
+  'What is your name? ',
+  'What is your age?',
+  'What do you like to do? ',
+  'What else do you like to do? ("exit" to stop) '
+];
 
-// accessing the exported functions -- 3 types of requires
+// alternatively, we could have used rl.setPrompt instead of rl.question
+// as we do down below
+rl.question(questions[0], (answer) => {
+  user.name = answer;
 
-// 1) use relative path if we created the file
-var circle = require('./index');
-var area = circle.area(4);
-var circumference = circle.circumference(4);
+  // ask another question
+  rl.question(`Hi ${answer}. ${questions[1]} `, (answer) => {
+    user.age = answer;
 
-console.log(area);
-console.log(circumference);
+    // set and use new prompt -- similar to 'question'
+    rl.setPrompt(questions[2])
+    rl.prompt();
 
+    // listen to 'line' event
+    rl.on('line', (answer) => {
+       if (answer === 'exit') {
+        rl.close(); // close 'readline' if user types 'exit'
+       } else {
+        user.hobbies.push(answer);
 
-// 2) call module by name if it is part of node core or if you installed and external module using npm
-var fs = require('fs'); // node core module fs--gives access to the file system
-// enter the node REPl and type 'fs' to see a list of methods in this obj
+        // set and use new prompt
+        rl.setPrompt(questions[3])
+        rl.prompt();
+       }
+    });
 
-// 3) install external module 'colors' by running 'npm i colors' and then require module
-// var colors = require('colors');
+  });
+});
 
+// listen to the close event
+rl.on('close', () => {
+  console.log('%s is %d. They like to %j.', user.name, user.age, user.hobbies);
+  process.exit();
+})
 
-let askDirections = (location, cb) => cb(location);
-
-// logging
-logger('Start'); // 1
-
-setTimeout(() => logger('sto 1'), 0); // 6
-
-setTimeout(() => logger('sto 2'), 0); // 7
-
-process.nextTick(() => logger('Next tick')); // 4 -- runs before setTimeout
-
-askDirections('home', getDirections); // 2
-
-askDirections('downtown', getDirections); // 5 -- calls 'process.nextTick' in the 'if' block
-
-askDirections('uptown', getDirections); // 8 -- calls 'setTimeout' in the 'if' block; runs after all other events are finished
-
-logger('End'); // 3
-
-/*
-Prints:
-  1.Start
-  2.Go straight
-  3.End
-  4.Next tick
-  5.Make a right at the light
-  6.sto 1
-  7.sto 2
-  8.Make a left at the light
-*/
