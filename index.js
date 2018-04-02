@@ -1,27 +1,28 @@
-// node has a global object that works similarly to the browser's window object
-// there are some differences though
+var PI = Math.PI;
 
-let name = 'Josh';
-console.log(name); // Josh
+exports.area = function(r) {
+  return PI * r * r;
+}
 
-// undefined -- whereas on regular js (on the browser) window.name would be 'Josh'
-// this is because 'name' is scoped to this module (this file) and are not added to the global object like in the browser
-console.log(global.name); 
+exports.circumference = function(r) {
+  return 2 * PI * r;
+}
 
-// if we want to add a variable to the global object we need to do it explicitly
-global.name = 'Josh';
+// accessing the exported functions -- 3 types of requires
 
-console.log(global.name); // Josh
+// 1) use relative path if we created the file
+var circle = require('./index');
+var area = circle.area(4);
+var circumference = circle.circumference(4);
 
-// NOTE: we can use most js methods in node, such as substring, slice, splice, etc
-console.log(name.slice(1)); // osh
+console.log(area);
+console.log(circumference);
 
 
-// THERE ARE OTHER GLOBAL OBJECTS YOU SHOULD KNOW ABOUT 
-// BELOW ARE SOME IMPORTANT ONES. FOR A COMPLETE LIST, FOLLOW THIS LINK: https://nodejs.org/api/globals.html
+// 2) call module by name if it is part of node core or if you installed and external module using npm
+var fs = require('fs'); // node core module fs--gives access to the file system
+// enter the node REPl and type 'fs' to see a list of methods in this obj
 
-console.log(__dirname); // the path to the directory name of the current module
-console.log(__filename); // the path to the filename of the current module
-console.log(exports); // short for module.exports -- allows you to export modules (that can then be imported on other modules)
-// console.log(require());// allows you to import modules that have been exported -- need the module path passed as argument
-console.log(process);// gives you access to the current node process
+// 3) install external module 'colors' by running 'npm i colors' and then require module
+// var colors = require('colors');
+
