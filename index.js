@@ -2,28 +2,60 @@
 // setTimeout, setInterval, clearInterval
 // as well as its own timing functions such as setImmediate and clearImmediate
 // https://nodejs.org/api/timers.html
+// look into 'process.nextTick' as well
+// https://nodejs.org/api/process.html#process_process_nexttick_callback_args
 
-var currentTime = 0;
-var waitInterval = 10;
-var percentageTime = 0;
-var totalTime = 5000;
+const totalTime = 5000;
+const waitTime = 10;
+let currentTime = 0;
+let percentageTime = 0;
 
-function writeWaitingPercent(p) {
-  process.stdout.clearLine(); // clears the line on terminal
-  process.stdout.cursorTo(0); // moves cursor (and content printed on terminal) back to index 0
-  process.stdout.write(`Completed processing... ${p}%`);
-}
+let printPercentage = (p) => {
+  process.stdout.clearLine();
+  process.stdout.cursorTo(0);
+  process.stdout.write(`Loading... ${p}%`);
+};
 
-var timer = setInterval(function() {
-  currentTime += waitInterval;
+let timer = setInterval(() => {
+  currentTime += waitTime;
   percentageTime = Math.floor((currentTime/totalTime) * 100);
-  writeWaitingPercent(percentageTime)
-}, waitInterval);
+  printPercentage(percentageTime);
+}, waitTime);
 
 
-setTimeout(function() {
+setTimeout(() => {
   clearInterval(timer);
-  writeWaitingPercent(100);
+  printPercentage(100);
   console.log('\ndone'); 
 }, totalTime);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
