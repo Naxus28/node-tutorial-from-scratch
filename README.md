@@ -1,5 +1,6 @@
-# node-tutorial-from-scratch
+# timers
 
-A node tutorial from the ground up, covering core concepts of node.js, node-express servers, best practices, and design patterns.
+Node has the same timing functions as js setTimeout, setInterval, clearInterval as well as its own timing functions such as setImmediate and clearImmediate
+[timers](https://nodejs.org/api/timers.html)
 
-Each branch covers a different topic, specified by the branch name. If you are a beginner, start from the first branch. If you are a node developer who wants to revise a topic, just checkout to the branch of your interest.
+Look into [process.nextTick](https://nodejs.org/api/process.html#process_process_nexttick_callback_args) as well

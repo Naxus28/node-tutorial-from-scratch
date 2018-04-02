@@ -1,10 +1,3 @@
-// node has the same timing functions as js
-// setTimeout, setInterval, clearInterval
-// as well as its own timing functions such as setImmediate and clearImmediate
-// https://nodejs.org/api/timers.html
-// look into 'process.nextTick' as well
-// https://nodejs.org/api/process.html#process_process_nexttick_callback_args
-
 const totalTime = 5000;
 const waitTime = 10;
 let currentTime = 0;
