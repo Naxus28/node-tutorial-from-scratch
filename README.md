@@ -1,5 +1,3 @@
-# node-tutorial-from-scratch
+# readline
 
-A node tutorial from the ground up, covering core concepts of node.js, node-express servers, best practices, and design patterns.
-
-Each branch covers a different topic, specified by the branch name. If you are a beginner, start from the first branch. If you are a node developer who wants to revise a topic, just checkout to the branch of your interest.
+Nice utility that allows us to interact with the user on the terminal without having to use stdin/stdout directly (these methods are implemented within 'readline'). See more [https://nodejs.org/api/readline.html](https://nodejs.org/api/readline.html)
