@@ -1,6 +1,5 @@
 // node has a global object that works similarly to the browser's window object
 // there are some differences though
-
 let name = 'Josh';
 console.log(name); // Josh
 
