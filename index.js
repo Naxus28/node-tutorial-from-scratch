@@ -1,3 +1,4 @@
+
 const totalTime = 5000;
 const waitTime = 10;
 let currentTime = 0;
@@ -21,34 +22,5 @@ setTimeout(() => {
   printPercentage(100);
   console.log('\ndone'); 
 }, totalTime);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
