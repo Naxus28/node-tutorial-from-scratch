@@ -48,3 +48,4 @@ rl.on('close', () => {
   console.log('%s is %d. They like to %j.', user.name, user.age, user.hobbies);
   process.exit();
 })
+
