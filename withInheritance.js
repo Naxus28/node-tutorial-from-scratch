@@ -2,12 +2,8 @@ const { EventEmitter } = require('events'); // get the emitter via object destru
 const util = require('util');
 
 // Possible ways to inherit:
-// add the emmiter directly into a constructor function prototype
-// (perhaps not the best way but we know the EventEmitter object is not going to change so this should be fine)
-// Person.prototype.EventEmitter = EventEmitter;
 
-
-// use node's util.inherits() to create inheritance 
+// node's util.inherits() to create inheritance 
 function Person(name) {
   this.name = name;
 }
