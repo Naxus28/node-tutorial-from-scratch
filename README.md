@@ -11,6 +11,7 @@ const PI = Math.PI;
 exports.area = (r) => PI * r * r;
 exports.circumference = (r) => 2 * PI * r;
 
+// import
 var circle = require('./moduleName');
 var area = circle.area(4);
 var circumference = circle.circumference(4);
@@ -49,6 +50,7 @@ module.exports = {
   circumference
 }
 
+// import
 var circle = require('./moduleName');
 var area = circle.area(4);
 var circumference = circle.circumference(4);
