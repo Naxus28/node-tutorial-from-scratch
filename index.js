@@ -1,59 +1,21 @@
-const events = require('events');
+const Person = require('./classes/Person'); // user created modules need to be imported using relative path
+const Animal = require('./classes/Animal');
 
-// EventEmitter is a constructor
-const eventEmitter = new events.EventEmitter();
+const peter = new Person('Peter');
+const parrot = new Animal('Kraken', 'squawk');
 
-// listenerCount is a function
-const eventEmitterListenerCount = require('events').EventEmitter.listenerCount;
 
-// listener #1
-const listener1 = () => console.log('listener1 executed.');
+// use 'function' so 'this' refers to Person 
+peter.on('greet', function(greeting) {
+  console.log(`${this.name} says '${greeting}'.`)
+});
 
-// listener #2
-const listener2 = () => console.log('listener2 executed.');
+peter.emit('greet', 'hello folks'); // Peter says hello folks.
 
-// Bind a custom 'connection' event with the listener1 function
-eventEmitter.on('connection', listener1);
 
-// Bind the connection event with the listener2 function(this is an alias to '.on')
-eventEmitter.addListener('connection', listener2);
+// parrot
+parrot.on('squawk', function() {
+  console.log(`${this.name} ${this.sound}s.`)
+});
 
-let eventListeners = eventEmitterListenerCount(eventEmitter,'connection');
-
-console.log(eventListeners + " Listener(s) listening to connection event");
-
-// Fire the connection event 
-eventEmitter.emit('connection');
-
-// Remove the binding of 'listener1' function
-eventEmitter.removeListener('connection', listener1);
-console.log("Listener1 will not listen now.");
-
-// Fire the connection event 
-eventEmitter.emit('connection');
-
-eventListeners = eventEmitterListenerCount(eventEmitter,'connection');
-console.log(eventListeners + " Listener(s) listening to connection event");
-
-// Remove the binding of 'listener1' function
-eventEmitter.removeListener('connection', listener2);
-console.log("Listener2 will not listen now.");
-
-eventListeners = eventEmitterListenerCount(eventEmitter,'connection');
-console.log(eventListeners + " Listener(s) listening to connection event");
-
-console.log("Program Ended.");
-
-/*
-  Prints:
-    2 Listener(s) listening to connection event
-    listener1 executed.
-    listener2 executed.
-    Listener1 will not listen now.
-    listener2 executed.
-    1 Listener(s) listening to connection event
-    Listener2 will not listen now.
-    0 Listener(s) listening to connection event
-    Program Ended.
-*/
-
+parrot.emit('squawk');
