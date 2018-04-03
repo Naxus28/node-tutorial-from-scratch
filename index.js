@@ -1,51 +1,14 @@
-const readline = require('readline'); // get the module
-const rl = readline.createInterface(process.stdin, process.stdout); // creates the readline interface
+process.stdout.write('Write something \n');
+process.stdout.write(' > ');
 
-const user = {
-  name: '',
-  age: 0,
-  hobbies: []
-};
-
-const questions = [
-  'What is your name? ',
-  'What is your age?',
-  'What do you like to do? ',
-  'What else do you like to do? ("exit" to stop) '
-];
-
-// alternatively, we could have used rl.setPrompt instead of rl.question
-// as we do down below
-rl.question(questions[0], (answer) => {
-  user.name = answer;
-
-  // ask another question
-  rl.question(`Hi ${answer}. ${questions[1]} `, (answer) => {
-    user.age = answer;
-
-    // set and use new prompt -- similar to 'question'
-    rl.setPrompt(questions[2])
-    rl.prompt();
-
-    // listen to 'line' event
-    rl.on('line', (answer) => {
-       if (answer === 'exit') {
-        rl.close(); // close 'readline' if user types 'exit'
-       } else {
-        user.hobbies.push(answer);
-
-        // set and use new prompt
-        rl.setPrompt(questions[3])
-        rl.prompt();
-       }
-    });
-
-  });
+// the 'on' method allows us to listen for events
+process.stdin.on('data', data => {
+  console.log('data: ', data); // this data is a Buffer object, so we need to convert it to a string
+  console.log(data.toString());// need to trim the data to get a 'clean' string, without line breaks
+  console.log(data.toString().trim());
+  // if we don't explicitly exit the process it will continue running 
+  // (comment out the line below and check how the process hangs on the terminal)
+  process.exit();
 });
 
-// listen to the close event
-rl.on('close', () => {
-  console.log('%s is %d. They like to %j.', user.name, user.age, user.hobbies);
-  process.exit();
-})
 
