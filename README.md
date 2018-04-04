@@ -1,57 +1,39 @@
-# Modules [https://nodejs.org/api/modules.html](https://nodejs.org/api/modules.html)
+# Child Process [https://nodejs.org/api/child_process.html](https://nodejs.org/api/child_process.html)
 
-In the Node.js module system, each file is treated as a separate module. Variables are scoped to the module unless they are exported and then imported--`require('./module')` or `import module from './module'` from another module.
+The two main child process methods are `exec` and `spawn`. 
 
-There are multiple ways to export modules in node (see examples using es6 on .js files):
+`Exec` allows node to communicate with external processes in the environment(such as `open`, `ls`, etc). It is good for working with processes that return small pieces of data.
 
-1) Export variables/functions directly by adding them to the `exports` object:
+`Spawn` on the other hand is good to work with ongoing processes that return large amounts of data.
 
-```javascript
-const PI = Math.PI;
-exports.area = (r) => PI * r * r;
-exports.circumference = (r) => 2 * PI * r;
-
-var circle = require('./moduleName');
-var area = circle.area(4);
-var circumference = circle.circumference(4);
-```  
-
-2) Export the module as a function that returns the functions
-```javascript
-const PI = Math.PI;
-module.exports = function(r) {
-  return {
-    area: function() {
-      return PI * r * r;
-    },
-    circumference: function() {
-      return 2 * PI * r;
-    }
-  };
- };
-
-// import
-var circle = require('./moduleName'); // imports a function
-var myCircle = circle(4);
-myCircle.area();
-myCircle.circumference();
-``` 
-
-3) Create functions outside of the "exports" object and export their reference
+These functions let us run a process on a <parent=process.js> and create and interact with processes in other js parent=processs (or the parent=process system).
 
 ```javascript
-const PI = Math.PI;
-const area = (r) => PI * r * r;
-const circumference = (r) => 2 * PI * r;
+// parent=process.js
+const { spawn } = require('child_process'); // gets the spawn function
+const cp = spawn('node', ['child-process']); // creates a spawn on child-process.js, meaning we can interact with that parent=process via the 'cp' instance
 
-module.exports = {
-  area,
-  circumference
-}
 
-var circle = require('./moduleName');
-var area = circle.area(4);
-var circumference = circle.circumference(4);
-```  
+// Some ways in which processes can interact:
+
+// 1. parent process captures data written from the child process (via stdout or console.log)
+// child-process.js
+process.stdout.write('some data');
+
+// parent=process.js
+cp.stdout.on('data', (data) => {
+  // code here
+}); 
+
+// 2. write data to the child process. If the child process is listening to stdin we can perform some action when this data is written.
+
+// parent=process.js
+cp.stdin.write('some data'); 
+
+// child-process.js
+process.stdin.on('data' data => {
+  // code here
+})
+```
 
 
