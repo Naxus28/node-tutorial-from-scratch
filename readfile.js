@@ -11,7 +11,7 @@ console.log(`=====Sync file read=====: ${contentBuffer}\n`); // prints the Buffe
 console.log(`=====Sync file read=====: ${contentBuffer.toString()}\n`); // prints all content in the file
 
 
-
+// async
 fs.readFile('./readdir.js', 'UTF-8', (err, file) => {
    console.log(`=====Async file read=====: ${file}\n`) 
 });
