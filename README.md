@@ -2,8 +2,6 @@
 
 The two main child process methods are `exec` and `spawn`. 
 
-  (or the file system).
-
 `Exec` provides a good way node to communicate with external processes in the environment(such as `open`, `ls`, etc). It is good for working with processes that return small pieces of data.
 
 `Spawn` on the other hand is good to work with ongoing processes that return large amounts of data, such as running a process on a <parent.js> and creating and interacting with processes in other js files <child-one.js> <<child-two.js>, ect.
