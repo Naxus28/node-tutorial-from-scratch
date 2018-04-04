@@ -7,11 +7,11 @@ const path = require('path');
 process.stdout.write(`I am a process running from "${path.basename(__filename)}"`);
 
 // when data is passed to this process via a spawned instance of this file in the parent process:
-// const cp = spawn('node', ['spawnTest']);
+// const cp = spawn('node', ['spawnChild']);
 // cp.stdin.write('writing into child')
 // we console.log the data and exit this process (the child process)
 process.stdin.on('data', function(data) {
-  console.log(`STDIN Data Received -> ${data.toString().trim()}\n`);
-  console.log('Closing child process\n'); 
+  console.log(`"STDIN Data Received -> ${data.toString().trim()}"`);
+  console.log('"Closing child process"'); 
   process.exit(); // exits this process (the child)
 });

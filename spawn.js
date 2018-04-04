@@ -2,12 +2,12 @@ const { spawn } = require('child_process');
 
 // create the child process instance passing an array of modules to be 
 // executed in this process as second argument 
-const cp = spawn('node', ['spawnTest']);
+const cp = spawn('node', ['spawnChild']);
 
 // listen to data output from the child process (stdout or console.log)
 // prints the data sent from the child process' output function 
 cp.stdout.on('data', (data) => {
-  console.log(`Stdout from child process: ${data.toString()}\n`);
+  console.log(`STDOUT in parent process gets data from child process: ${data.toString()}`);
 }); 
 
 // listen to data process.exit() in the child
