@@ -1,4 +1,5 @@
 const fs = require('fs');
+const dirPath = '../lib';
 
 /* SYNCHRONOUS READ
  * https://nodejs.org/api/fs.html#fs_fs_readdirsync_path_options
@@ -7,7 +8,7 @@ const fs = require('fs');
  * This function is well suited for app initialization, where you would want 
  * all config files to have been initialized before you start running the app.
  */ 
-const files = fs.readdirSync('./lib');
+const files = fs.readdirSync(dirPath);
 console.log(`In sync call: ${files}`); // [ 'index.js', 'utils' ]
 
 /* ASYNCHRONOUS READ
@@ -20,7 +21,7 @@ console.log(`In sync call: ${files}`); // [ 'index.js', 'utils' ]
 // but then continues down with other tasks
 // The callback will be executed once all 
 // synchronous code--and asychronous code registered before the below function--has been executed
-fs.readdir('./lib', (err, files) => {
+fs.readdir(dirPath, (err, files) => {
   if (err) {
     throw err;
   }
