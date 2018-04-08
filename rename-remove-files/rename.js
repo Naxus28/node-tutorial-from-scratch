@@ -15,7 +15,7 @@ try {
 
 // async--no need for try/catch here because
 // this happens asynchronously and the error is caught and passed to the callback by default
-fs.rename('./utils/fs-utils.js', './utils/utils.js', (err) => {
+fs.rename('./utils/fs-utils.js', './utils/utils.js', err => {
   if (err) {
     console.log('An error occured while renaming ./utils/fs-utils.js. Check that the file exists.');
   } else {
