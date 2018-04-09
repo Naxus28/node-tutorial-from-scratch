@@ -3,7 +3,10 @@ const port = '3334';
 const portOne = '3335';
 
 /* this method creates the server
- * any request to the server will invoke the callback
+ * any request to the server will invoke the callback, so:
+ * a request to '/', '/somepath', '/somepath/file', etc will invoke the callback
+ * we need to figure out from the request url what resource the user is trying to access
+ * 
  * the callback receives:
  * 
  * 1. the request object, which has such information as requested headers, 
