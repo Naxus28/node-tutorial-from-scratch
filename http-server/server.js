@@ -43,6 +43,7 @@ const serverOne = http.createServer((req, res) => {
       <body>
         <h1>Node Request HTML</h1>
         <p>Request method: ${req.method}</p>
+        <p>Request url: ${req.url}</p>
         <p>Request host: ${req.headers.host}</p>
         <p>Request user-agent: ${req.headers['user-agent']}</p>
       </body>
