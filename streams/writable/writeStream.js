@@ -9,6 +9,8 @@ const rl = readline.createInterface(process.stdin, process.stdout);
 
 rl.question('Enter the name of the text file you want to create:', (answer) => {
   let file = `${answer}.txt`;
+
+  // creates a stream and keeps it open
   const stream = fs.createWriteStream(file);
   console.log(`${file} was created`);
 
@@ -19,10 +21,12 @@ rl.question('Enter the name of the text file you want to create:', (answer) => {
 
   rl.on('line', answer => {
     if (answer === 'exit') {
+      // close stream
       rl.close();
       stream.close();
       exec(`open ${file}`);
     } else {
+      // write to stream
       stream.write(`${answer}\n`);
       rl.prompt();
     }
