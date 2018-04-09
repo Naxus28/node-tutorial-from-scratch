@@ -51,6 +51,9 @@ http.createServer((req, res) => {
     // this streams the content of the file to the response and 
     // automatically handles creating the chunks and ending the stream for us
     fileStream.pipe(res);
+
+    // file served on http://localhost:3334/styles/reset.css
+    // file served on http://localhost:3334/styles/styles.css
   }  else if(req.url.match(/.jpg|.jpeg$/)) {
     // if requested url ends in css
     // we could use readFile here as well but it is better to use a stream so we read 
@@ -69,6 +72,8 @@ http.createServer((req, res) => {
 
     // same as above
     fileStream.pipe(res);
+
+    // file served on http://localhost:3334/img/dino.jpg
   } else {
     // file doesn't exist
     res.writeHead(404, {
