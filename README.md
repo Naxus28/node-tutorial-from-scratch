@@ -1,12 +1,8 @@
-# File System [https://nodejs.org/api/fs.html](https://nodejs.org/api/fs.html)
+# Http [https://nodejs.org/api/http.html](), [https://nodejs.org/api/https.html](https://nodejs.org/api/https.html)
 
-The file system module allows you to access the file system. All functions have a synchronous and asynchronous version.
+"The HTTP interfaces in Node.js are designed to support many features of the protocol which have been traditionally difficult to use. In particular, large, possibly chunk-encoded, messages. The interface is careful to never buffer entire requests or responses — the user is able to stream data."
 
-## SYNCHRONOUS FUNCTIONS
-These are well suited for app initialization, where you would want all config files to have been initialized before you start running the app.
+Node provides the http module and the https module, to create secure servers. When working with the https module we need to provide the ssl certificate ourselves.
 
+The code one would write to handle http and https operations in node is virtually the same.
 
-## ASYNCHRONOUS FUNCTIONS
-To be used when the app is running so we take advantage of node's non-blocking threading system. 
-
-> Stay away from synchronous operations when app is running.
