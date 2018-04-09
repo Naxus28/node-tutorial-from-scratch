@@ -1,12 +1,13 @@
 const fs = require('fs');
 
-// ======READING WITH READFILE: not ideal for large files======
+// ======READING FILE WITH .READFILE: not ideal for large files======
 // reading file with readFile is fine for small files
 // but for large pieces of data, there may be latency if the
 // application has high traffic because the callback function
-// IS only called after the whole file has been read
-// Additionally, the whole file content of the file is be buffered in the 
+// is only called after the whole file has been read
+// Additionally, the entire content of the file is be buffered in the 
 // one variable passed in the parameter (in this case 'lorem')
+
 // fs.readFile('./lorem.txt', 'UTF-8', (err, lorem) => {
 //   if (err) {
 //     throw err;
@@ -17,11 +18,11 @@ const fs = require('fs');
 
 
 
-// ======READING USING STREAMS: ideal for large files======
+// ======READING FILE USING STREAMS: ideal for large files======
 // instead of waiting for the whole file to be read, 
 // the stream allows us to receive small chunks of data at a time
 const stream = fs.createReadStream('./lorem.txt', 'UTF-8');
-let data = ''; // use this variable to store the chunks read from the stream
+let fileContent = ''; // use this variable to store the chunks read from the stream
 
 
 // this event is reaised only once when the stream starts
@@ -33,11 +34,11 @@ stream.once('data', () => {
 // read chuncks of data when it is received by the stream
 stream.on('data', loremChunk => {
   process.stdout.write(`\n\nChunk length: ${loremChunk.length}\n\n`); 
-  data+=loremChunk;
+  fileContent+=loremChunk;
 });
 
 // listen to the stream when it finishes reading the data
 stream.on('end', () => {
   console.log(`\n\nThe stream has finished reading data.\n\n`); 
-  // console.log(`File CONTENT: \n===========\n\n${data}`); 
+  // console.log(`File CONTENT: \n===========\n\n${fileContent}`); 
 });
