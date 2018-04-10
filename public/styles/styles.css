@@ -39,3 +39,7 @@ li {
 .dict-container {
   margin-top: 30px;
 }
+.delete {
+  cursor: pointer;
+  color: red;
+}
