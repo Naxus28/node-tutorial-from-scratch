@@ -1,6 +1,13 @@
 body {
   padding: 20px;
 }
+h3 {
+  margin-bottom: 5px;
+}
+p {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
 label {
   display: block;
   margin-top: 10px;
@@ -22,4 +29,13 @@ button {
   background: rgb(50,150,100);
   color: white;
   border: none;
+}
+ul {
+  padding-left: 0;
+}
+li {
+  list-style-type: none;
+}
+.dict-container {
+  margin-top: 30px;
 }
