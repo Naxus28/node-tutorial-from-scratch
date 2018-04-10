@@ -1,0 +1,24 @@
+body {
+  padding: 20px;
+}
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 3px;
+  font-weight: 600;
+}
+input {
+  height: 20px;
+  width: 150px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+button {
+  width: 150px;
+  padding: 10px;
+  margin-top: 10px;
+  background: rgb(50,150,100);
+  color: white;
+  border: none;
+}
