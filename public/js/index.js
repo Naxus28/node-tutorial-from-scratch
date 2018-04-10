@@ -1,6 +1,6 @@
 $('document').ready(() => {
 
-  // handle get requests from the /dictionary-api route
+  // requests data from the /dictionary-api route
   $.getJSON('/dictionary-api', data => {
     const items = data.map(item => (
       `<li>
