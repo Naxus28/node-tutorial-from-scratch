@@ -1,5 +1,4 @@
-# node-tutorial-from-scratch
+# web sockets with ws module [https://github.com/websockets/ws](https://github.com/websockets/ws)
 
-A node tutorial from the ground up, covering core concepts of node.js, node-express servers, best practices, and design patterns.
-
-Each branch covers a different topic, specified by the branch name. If you are a beginner, start from the first branch. If you are a node developer who wants to revise a topic, just checkout to the branch of your interest.
+Web Sockets are part of the HTML5 Spec. They allow for two way connection between client server. Web Sockets use their own protocol to send and receive messages from a TCP server.
+Setting up a web socket manually can be quite involved. Fortunatelly, there are node modules such as `ws` that help us in this task.

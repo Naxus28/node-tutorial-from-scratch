@@ -1,0 +1,22 @@
+{
+  "name": "node-19-websocket-with-ws-module",
+  "version": "1.0.0",
+  "description": "tutorial to build a web socket server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naxus28/node-tutorial-from-scratch.git"
+  },
+  "author": "Gabriel Ferraz <gabrielferraz27@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Naxus28/node-tutorial-from-scratch/issues"
+  },
+  "homepage": "https://github.com/Naxus28/node-tutorial-from-scratch#readme",
+  "dependencies": {
+    "ws": "^5.1.1"
+  }
+}
