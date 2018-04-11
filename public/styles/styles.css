@@ -2,6 +2,7 @@ html,
 body {
   background: #000;
   color: rgb(0, 255,0);
+  padding: 20px;
 }
 input {
   height: 20px;
