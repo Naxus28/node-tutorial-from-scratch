@@ -1,5 +1,5 @@
 {
-  "name": "node-19-websocket-with-ws-module",
+  "name": "node-20-websocket-with-socket-io",
   "version": "1.0.0",
   "description": "tutorial to build a web socket server",
   "main": "index.js",
@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Naxus28/node-tutorial-from-scratch#readme",
   "dependencies": {
-    "ws": "^5.1.1"
+    "express": "^4.16.3",
+    "socket.io": "^2.1.0",
+    "socket.io-client": "^2.1.0"
   }
 }
