@@ -1,5 +1,9 @@
 // if browser suppors WebSocket
 // https://caniuse.com/#feat=websockets
+// 
+// References:
+// https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API
+// https://developer.mozilla.org/en-US/docs/Web/API/WebSocket
 if (WebSocket) {
   const ws = new WebSocket("ws://localhost:3000"); // native browser WebSocket class
   ws.onopen = () => setTitle("Connected to Cyber Chat");
