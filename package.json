@@ -1,7 +1,7 @@
 {
-  "name": "programming-dictionary",
+  "name": "node-19-websocket-with-ws-module",
   "version": "1.0.0",
-  "description": "A dictionary of programming terms",
+  "description": "tutorial to build a web socket server",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -17,8 +17,6 @@
   },
   "homepage": "https://github.com/Naxus28/node-tutorial-from-scratch#readme",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "cors": "^2.8.4",
-    "express": "^4.16.3"
+    "ws": "^5.1.1"
   }
 }

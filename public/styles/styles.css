@@ -1,45 +1,13 @@
+html,
 body {
-  padding: 20px;
-}
-h3 {
-  margin-bottom: 5px;
-}
-p {
-  margin-bottom: 5px;
-  margin-top: 5px;
-}
-label {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 3px;
-  font-weight: 600;
+  background: #000;
+  color: rgb(0, 255,0);
 }
 input {
   height: 20px;
-  width: 150px;
-  padding: 5px;
-  border: 1px solid black;
-  border-radius: 3px;
-}
-button {
-  display: block;
-  width: 150px;
-  padding: 10px;
-  margin-top: 10px;
-  background: rgb(50,150,100);
-  color: white;
+  width: 200px;
+  background: #000;
   border: none;
+  caret-color: white;
 }
-ul {
-  padding-left: 0;
-}
-li {
-  list-style-type: none;
-}
-.dict-container {
-  margin-top: 30px;
-}
-.delete {
-  cursor: pointer;
-  color: red;
-}
+
