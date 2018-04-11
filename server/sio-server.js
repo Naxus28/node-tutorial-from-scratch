@@ -23,12 +23,16 @@ app.use(express.static('../public'));
   
   // create log file if it doesn't exist -- we are registering the chat messages on a .log file just for fun
   if (!fs.existsSync(logFilePath)) {
-    fs.writeFileSync(logFilePath, 'CHAT LOG\n========\n\'); 
+    fs.writeFileSync(logFilePath, 'CHAT LOG\n========\n'); 
   }
 
 
 /* SOCKET.IO LISTEN TO CONNECTIONS AND EMIT EVENTS
- * each 'socket' (in the param) represents an individual client connection
+ * Each connection creates a 'socket', or an individual client connection
+ * A socket server handles multiple instances of socket clients
+ * 'io' is the server instance
+ * 'io' will broadcast events to all users in the network by default
+ * 
  * When individual clients connect we will
  * 1. emit a custom 'message' event (to which the connected client will listen)
  * 2. listen to a 'client-message' event (which will be emitted from the client when they first connect)
@@ -49,14 +53,26 @@ io.on('connection', socket => {
   socket.on('client-message', message => console.log(message));
   socket.on('chat', message => {
     // broadcast message to all users
-    socket.broadcast.emit('message', message); 
+    io.emit('message', message); 
+
+    // the above is equivalent to this, except that this line doesn't
+    // broadcast to iteself, meaning the client who sent this message
+    // will not receive it back from the server--this can be handled on
+    // the client side by appending the message to the UI immediately after it is
+    // submitted
+    // socket.broadcast.emit('message', message);
 
     // log every message sent to this chat
     fs.appendFileSync(logFilePath, `\n> ${message} - ${Date()}\n`); 
   });
 
-  // doesn't close connection completely
-  // socket.on('exit', () => stream.close());
+  // this fires when the user closes the browser
+  socket.on('disconnect', () => {
+    console.log('Client disconnected');
+
+    // server instance emits message to all users
+    io.emit('message', 'User disconnected');
+  });
 });
 
 
