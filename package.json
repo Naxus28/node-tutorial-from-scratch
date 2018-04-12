@@ -1,5 +1,5 @@
 {
-  "name": "node-20-websocket-with-socket-io",
+  "name": "node-21-test-mocha-chai",
   "version": "1.0.0",
   "description": "tutorial to build a web socket server",
   "main": "index.js",
@@ -16,9 +16,7 @@
     "url": "https://github.com/Naxus28/node-tutorial-from-scratch/issues"
   },
   "homepage": "https://github.com/Naxus28/node-tutorial-from-scratch#readme",
-  "dependencies": {
-    "express": "^4.16.3",
-    "socket.io": "^2.1.0",
-    "socket.io-client": "^2.1.0"
+  "devDependencies": {
+    "chai": "^4.1.2"
   }
 }
