@@ -1,5 +1,5 @@
 {
-  "name": "node-21-test-mocha-chai",
+  "name": "node-21-test-mocha-chai-3-mock-server-with-nock",
   "version": "1.0.0",
   "description": "tutorial to build a web socket server",
   "main": "index.js",
