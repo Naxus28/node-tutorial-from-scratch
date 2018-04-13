@@ -1,5 +1,5 @@
 {
-  "name": "node-21-test-mocha-chai-3-mock-server-with-nock",
+  "name": "node-22-test-mocha-chai-4-sinon-spies",
   "version": "1.0.0",
   "description": "tutorial to build a web socket server",
   "main": "index.js",
@@ -18,7 +18,9 @@
   "homepage": "https://github.com/Naxus28/node-tutorial-from-scratch#readme",
   "devDependencies": {
     "chai": "^4.1.2",
-    "nock": "^9.2.5"
+    "nock": "^9.2.5",
+    "rewire": "^4.0.0",
+    "sinon": "^4.5.0"
   },
   "dependencies": {}
 }
