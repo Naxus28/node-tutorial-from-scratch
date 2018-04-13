@@ -1,5 +1,6 @@
 const { expect } = require('chai'); 
 const rewire = require('rewire');
+const sinon = require('sinon');
 
 // notice we are using 'rewire' to require the file
 // this will allow us to use mock data instead of real data on tests
@@ -8,14 +9,7 @@ const users = rewire('../lib/users');
 // describe functions can be nested
 describe('Users', function() { 
   describe('getCountBy()', function() {
-
     beforeEach(function() {
-
-      // here we create the mock data that we will 
-      // use instead of the real data from users.json
-      // we just need the properties we are going to 
-      // test against so the objects don't need to have all
-      // properties the original objects do
       this.users = [
         {
          gender: 'Female',
@@ -44,13 +38,15 @@ describe('Users', function() {
         }
       ];
 
-      // here we use "rewire's" set method to set
-      // the value of the private variable (const users = require('../data/users')) in users.js
-      // so that our test use our mock data instead of the original data
-      // this is also very useful when you need to test data incoming from an api
-      // and don't have the data available locally
+      // this spy allows us to get information
+      // about the calls to countBy: http://sinonjs.org/releases/v4.5.0/spies/ (check 'Properties')
+      this.spy = sinon.spy(users.countBy);
 
-      // setting the private variable 'users' in users.js to this.users
+      // call the spy twice so we 
+      // can then get information about the calls later
+      this.spy({gender: 'Male', country: 'BR'});
+      this.spy({gender: 'Male'});
+
       users.__set__('users', this.users); 
     });
 
@@ -63,6 +59,27 @@ describe('Users', function() {
       // we have 2 males from Hmong in the mocked array above
       expect(users.countBy({gender: 'Male', nationality: 'Hmong'})).to.equal(2);
     });
+
+    // get information about the spy calls
+    it('should call countBy 2 times', () => {
+      // because we are using lambda functions 
+      // we need to get the spy function created in  'beforeEach'
+      // from 'this.ctx' as opposed to 'this' (console.log(this) to see what it looks like)
+      expect(this.ctx.spy.callCount).to.equal(2);  
+    }); // get information about the calls
+    
+
+    it('should call countBy twice--check with calledTwice', () => {
+      expect(this.ctx.spy.calledTwice).to.be.true;  
+    });  
+
+    it('should assert that the first spy is called with {gender: \'Male\'}', () => {
+      expect(this.ctx.spy.firstCall.args[0].gender).to.equal('Male');  
+    }) 
+
+    it('should assert that the first spy is called with {coutry: \'BR\'}', () => {
+      expect(this.ctx.spy.firstCall.args[0].country).to.equal('BR');  
+    })
 
   });
 });
