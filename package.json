@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/Naxus28/node-tutorial-from-scratch#readme",
   "devDependencies": {
-    "chai": "^4.1.2"
-  }
+    "chai": "^4.1.2",
+    "nock": "^9.2.5"
+  },
+  "dependencies": {}
 }
