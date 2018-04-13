@@ -21,8 +21,12 @@ describe('Tools testing suite', () => {
       // finished executing before it asserts it.
       // That is why we use 'done': mocha waits until this function is called
       // to assert the test. 
-      // The default wait time is 2000ms (it can be customized).
+      // The default wait time is 2000ms 
+      // but it can be customized as such: this.timeout(ms); e.g. this.timeout(5000)
       // If the 'done' function is not called mocha fails
+      
+      this.timeout(5000); // increases the wait time of this function
+
       tools.loadWiki({first: 'George', last: 'Boole'}, (html) => {
         expect(html).to.be.ok;
         done();
