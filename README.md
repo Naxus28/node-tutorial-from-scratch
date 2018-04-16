@@ -1,4 +1,4 @@
-# creating spies with [sinon](http://sinonjs.org/releases/v4.5.0/) -- no stub code on this file. Check this [video tutorial](https://www.youtube.com/watch?v=Qlmv7nox5pM) and [this tutorial](https://www.sitepoint.com/sinon-tutorial-javascript-testing-mocks-spies-stubs/) for examples
+# code coverage with [istanbul](https://github.com/gotwarlost/istanbul)
 
 Mocha gives us a way to describe, run, and build tests but it doesn't have a mechanism to check values. We can use Chai along with Mocha to be able to check values.
 Mocha should be installed globally `npm i -g mocha` so we can run it in any project from the command line as such `mocha <test directory> or <test file>`. Chai should be installed per project as a dev dependency `npm i -D chai`.
