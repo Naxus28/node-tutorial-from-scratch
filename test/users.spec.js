@@ -49,7 +49,7 @@ describe('Users', function() {
       users.__set__('users', this.users); 
     });
 
-    it('should count 3 females', () => {
+     it('should count 3 females', () => {
       // we have 3 female users in the mocked array above
       expect(users.countBy({gender: 'Female'})).to.equal(3);
     });

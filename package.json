@@ -22,5 +22,7 @@
     "rewire": "^4.0.0",
     "sinon": "^4.5.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash": "^4.17.5"
+  }
 }
