@@ -1,5 +1,5 @@
 {
-  "name": "node-22-test-mocha-chai-4-sinon-spies",
+  "name": "node-21-test-mocha-chai-5-sinon-stubs",
   "version": "1.0.0",
   "description": "tutorial to build a web socket server",
   "main": "index.js",
