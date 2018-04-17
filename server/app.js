@@ -15,15 +15,6 @@ const app = express();
  * Middlewares are executed in the order they are registered
  */
 
-/* EXPRESS STATIC MIDDLEWARE
- * Below we are telling express to use the static file server that 
- * comes with the core express module; this will allow us to serve static files.
- * We need to specify the directory where the static files are hosted.
- * This line basically says: express, use the static server middleware 
- * to serve static files from the './public' folder
- */
-app.use(express.static('../public'));
-
 
 /* BODY PARSER MIDDLEWARE
  * the 'body-parser' module helps us parse data that is POSTED to this api,
@@ -37,6 +28,14 @@ app.use(express.static('../public'));
 app.use(bodyParser.json()); // if data is sent as json
 app.use(bodyParser.urlencoded({ extended: false })); // if data is sent url encoded
 
+/* EXPRESS STATIC MIDDLEWARE
+ * Below we are telling express to use the static file server that 
+ * comes with the core express module; this will allow us to serve static files.
+ * We need to specify the directory where the static files are hosted.
+ * This line basically says: express, use the static server middleware 
+ * to serve static files from the './public' folder
+ */
+app.use(express.static('../public'));
 
 /* CORS
  * the cors middleware allows requests from different domains to hit our api
@@ -106,6 +105,6 @@ app.delete('/dictionary-api/:item', (req, res) => {
 app.listen(port, () => console.log(`Listening on http://localhost:${port}`));
 
 
-// if we need this piece of code on a different file, we have to export it
+// export the module so we can import it on the test file
 module.exports = app;
 
