@@ -1,5 +1,4 @@
 const request = require('supertest');
-const expect = require('chai').expect;
 const rewire = require('rewire');
 const app = rewire('../server/app');
 
@@ -7,8 +6,10 @@ describe('Programming Dictionary App', () => {
 
   it('Loads the home page', done => {
     // use supertest to mock a request to the homepage
-    // because this is an asynchronous test
+    // Because this is an asynchronous test
     // we pass the 'done' method to supertest's 'end' method, which expects a function
+    // We can also pass 'done' straight into the 'expect' method as a second argument
+    // .expect(200, done)--the 'expect' method here is from supertest, not from chai
     request(app)
       .get('/')
       .expect(200)

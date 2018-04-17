@@ -37,9 +37,9 @@ $('document').ready(() => {
     const term = target[0].previousSibling.data;
     target.closest('li').remove();
     $.ajax({
-        url: `/dictionary-api/${term}`,
-        type: 'DELETE',
-        success: printDict
+      url: `/dictionary-api/${term}`,
+      type: 'DELETE',
+      success: printDict
     });
   });
 });

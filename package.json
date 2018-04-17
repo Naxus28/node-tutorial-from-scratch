@@ -1,5 +1,5 @@
 {
-  "name": "programming-dictionary",
+  "name": "programming-dictionary-with-http-test",
   "version": "1.0.0",
   "description": "A dictionary of programming terms",
   "main": "index.js",
@@ -22,6 +22,7 @@
     "express": "^4.16.3"
   },
   "devDependencies": {
+    "chai": "^4.1.2",
     "rewire": "^4.0.0",
     "supertest": "^3.0.0"
   }
