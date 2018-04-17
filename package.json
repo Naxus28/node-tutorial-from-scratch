@@ -1,5 +1,5 @@
 {
-  "name": "programming-dictionary",
+  "name": "programming-dictionary-with-http-test",
   "version": "1.0.0",
   "description": "A dictionary of programming terms",
   "main": "index.js",
@@ -20,5 +20,8 @@
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
     "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "supertest": "^3.0.0"
   }
 }
