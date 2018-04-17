@@ -2,7 +2,7 @@ const request = require('supertest');
 const expect = require('chai').expect;
 const cheerio = require('cheerio');
 const rewire = require('rewire');
-const app = rewire('../server/app');
+const app = rewire('../app');
 
 describe('Programming Dictionary App', () => {
 
