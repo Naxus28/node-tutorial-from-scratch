@@ -1,9 +1,3 @@
-# http endpoint test with  [supertest](https://github.com/visionmedia/supertest)
+# check http html responses with [cheerio](https://github.com/cheeriojs/cheerio)
 
-Supertest is a module that helps us test http applications, such as those built with node-express. Tests should be ran from the root of the test directory to pick up the home route '/', which is served via the express static method. All other tests work fine from outside the test root directory, except the test for the home route. 
-
-```bash
-cd test
-
- $ mocha app.spec 
-```
+"Cheerio parses markup and provides an API for traversing/manipulating the resulting data structure. It does not interpret the result as a web browser does. Specifically, it does not produce a visual rendering, apply CSS, load external resources, or execute JavaScript. If your use case requires any of this functionality, you should consider projects like PhantomJS or JSDom."

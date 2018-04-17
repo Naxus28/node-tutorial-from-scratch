@@ -1,4 +1,6 @@
 const request = require('supertest');
+const expect = require('chai').expect;
+const cheerio = require('cheerio');
 const rewire = require('rewire');
 const app = rewire('../server/app');
 
@@ -9,11 +11,21 @@ describe('Programming Dictionary App', () => {
     // Because this is an asynchronous test
     // we pass the 'done' method to supertest's 'end' method, which expects a function
     // We can also pass 'done' straight into the 'expect' method as a second argument
-    // .expect(200, done)--the 'expect' method here is from supertest, not from chai
+    // .expect(200, done)--the 'expect' method here is from supertest, not from chai\
+    // Differently than requests that respond with json, this one reponds with html, js, and css
+    // because we are getting the app's static data
+    // Here we can use 'Cheerio' to help us test the response
     request(app)
       .get('/')
       .expect(200)
-      .end(done);
+      .end((err, res) => {
+        const $ = cheerio.load(res.text); // now we can traverse the dom like we would with jQuery
+        const heading = $('h1').text();
+
+        // check if the heading is the same as the one in index.html
+        expect(heading).to.equal('Programming Dictionary');
+        done();
+      });
   });
 
   describe('Dictionary API', () => {
@@ -35,12 +47,18 @@ describe('Programming Dictionary App', () => {
     });
 
     it('GETS dictionary-api', done => {
+      let dict = this.dict; // cache this to use in callback (this will have a different scope in the callback)
       // test the get '/dictionary-api' route
       // similar to the static GET above
+      // here are using supertest's call back to check if 
+      // the response data is what we expect
       request(app)
         .get('/dictionary-api')
         .expect(200)
-        .end(done);
+        .end((err, res) => {
+          expect(JSON.parse(res.text)).to.deep.equal(dict); // deep.equal => http://www.chaijs.com/api/bdd/#method_deep
+          done();
+        }); 
     });
 
     it('POSTS dictionary-api', done => {
