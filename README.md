@@ -5,6 +5,7 @@ So: `node --inspect --inspect-brk app`
 
 When running in debug mode, node serves the app on the configured port and an additional port, with which we can interact.
  Several IDEs have tools that integrate with node's debug mode. We can also use the chrome inspect tools by opening this url: `chrome://inspect`.
+
 e.g.
 ```bash
 $ node --inspect app
@@ -17,7 +18,7 @@ Listening on http://localhost:3000
 
 ![node chrome inspect](img/node-chrome-inspect.png)
 
-> Steps to debug:
+__Steps to debug:__
 1. First open the app on http://localhost:3000 (or the port that you configired)
 2. Open chrome inspector on a different browser window
 3. Open the console tab on chrome debug (not the "profiler")
