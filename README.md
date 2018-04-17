@@ -1,4 +1,4 @@
-# debugging with the `--inspect` flag
+# debugging with the `--inspect` flag (https://nodejs.org/en/docs/guides/debugging-getting-started/)[https://nodejs.org/en/docs/guides/debugging-getting-started/]
 
 To run the app in debug mode we just need to run the node command with the inspect flag as such `node --inspect app`. If we want to put a breakpoint right at the beginning of the app we can also pass the `--inspect-brk` flag in addition to `--inspect`.
 So: `node --inspect --inspect-brk app`
