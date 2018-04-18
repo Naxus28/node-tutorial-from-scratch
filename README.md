@@ -1,24 +1,49 @@
-#create an express app using [express-generator](https://expressjs.com/en/starter/generator.html)
+#create a server with es6 support 
+ 
+ Node tries to keep up with the v8 engine so the latest versions of node will provide the same support to es6 as do Chrome's v8, including support to es6. Since the v8 engine doesn't support all es6 features yet, neither does node [https://nodejs.org/en/docs/es6/](https://nodejs.org/en/docs/es6/). Additionally, not all developers have the latest version of node, so we need to make sure our es6 code still works for them as well. For this reason we need to use babel to transpile es6.
 
-1. Install express-generator globally: `npm i -g express-generator`
-2. Use `express -h` to check the options express-generator provides for view template engines, css compilers, etc
 
-![express -h](sample/img/express-h.png)
+Need these babel packages:
 
-3. Create a project with your chosen options by using the corresponding flags e.g. 
-`express --view=ejs --css=sass <project-name>`, (or just use the default): `express <project-name>` 
-3. cd into project `cd project-name` and install dependencies: `npm install`
-4. Run app: `npm start` and open browser on http://localhost:3000
+```javascript
+"devDependencies": {
+  "babel-cli": "version",
+  "babel-preset-env": "version",
+  "babel-preset-stage-0": "version"
+}
+```
 
-### The app should have 
+Add this script to package.json
 
-1.) a 'bin' directory, which is the entry point for the application (`npm start` executes that file)
+```javascript
+  {
+    "scripts": {
+      "start": "nodemon ./index.js --exec babel-node -e js"
+    }
+  }
+```
 
-2.) a 'public' directory with child directories (images, javascript, stylesheets)
+This line translates as: 
 
-3.) a 'routes' directory with simple two simple demo routes 
+1. nodemon, start the index file and execute the `babel-node` binary file from the babel-cli package (check code in \node_modules\babel-cli\bin\babel-node.js)
 
-4.) a views directory with a simple demo views
+2. babel-node, evaluate 'js' files ([https://babeljs.io/docs/usage/cli/#babel-node](https://babeljs.io/docs/usage/cli/#babel-node))
 
-5.) an `app.js` file with the app's configuration
+
+Then we add the presets to a `.babelrc` file in the root of the project as such
+
+```javascript
+{
+  "presets": [
+    "env",
+    "stage-0"
+  ]
+}
+```
+References: [preset-stage-0](https://babeljs.io/docs/plugins/preset-stage-0/), [preset-env](https://github.com/babel/babel/tree/master/packages/babel-preset-env)
+
+Then we just create the server on `index.js` and run `npm start`
+
+
+
 
