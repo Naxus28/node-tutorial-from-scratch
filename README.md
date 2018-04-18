@@ -3,7 +3,7 @@
 1. Install express-generator globally: `npm i -g express-generator`
 2. Use `express -h` to check the options express-generator provides for view template engines, css compilers, etc
 
-![express -h](img/express-h.png)
+![express -h](sample/img/express-h.png)
 
 3. Create a project with your chosen options by using the corresponding flags e.g. 
 `express --view=ejs --css=sass <project-name>`, (or just use the default): `express <project-name>` 
