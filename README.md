@@ -1,6 +1,7 @@
 # get parameters from url with `req.params`
 
-Params are included in the api path as such: '/:param'.
+Params are included in the api path as such: '/:someParam' 
+and retrived in the callback as such `req.params.someParam`
 
 e.g.
 
