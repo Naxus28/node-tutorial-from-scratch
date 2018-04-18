@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Naxus28/node-tutorial-from-scratch#readme",
   "dependencies": {
     "express": "^4.16.3",
+    "lodash": "^4.17.5",
     "nodemon": "^1.17.3"
   },
   "devDependencies": {
