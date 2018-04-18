@@ -1,4 +1,4 @@
-#create a server with es6 support 
+# create a server with es6 support 
  
  Node tries to keep up with the v8 engine so the latest versions of node will provide the same support to es6 as do Chrome's v8, including support to es6. Since the v8 engine doesn't support all es6 features yet, neither does node [https://nodejs.org/en/docs/es6/](https://nodejs.org/en/docs/es6/). Additionally, not all developers have the latest version of node, so we need to make sure our es6 code still works for them as well. For this reason we need to use babel to transpile es6.
 
