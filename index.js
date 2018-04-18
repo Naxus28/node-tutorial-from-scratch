@@ -8,11 +8,16 @@ const PORT = 3000;
 app.use(express.static('public'));
 
 // get methods are called on page load
+// because we are serving static files on the '/' route
+// we should create another endpoint to send the users
 app.get('/', (req, res) => {
   console.log(`A get request on ${req.url}`);
-  // because we are serving static files on the '/' route
-  // this api will only send this data to ajax GET requests to '/'
-  // but not on page load anymore
+  // res.send(users); // sending static files to '/' so this doesn't work anymore
+});
+
+// sends all users
+app.get('/users', (req, res) => {
+  console.log(`A get request on ${req.url}`);
   res.send(users); 
 });
 
@@ -20,7 +25,13 @@ app.get('/', (req, res) => {
 // this api sends back the user whose id is 1
 app.get('/users/:id', (req, res) => {
   let user = _.find(users, { id: parseInt(req.params.id) });
-  res.send(user);
+  let sucess = {
+    message: 'success',
+    status: 200,
+    data: user
+  }
+
+  res.send(sucess);
 });
 
 // need to send a post request to trigger this route

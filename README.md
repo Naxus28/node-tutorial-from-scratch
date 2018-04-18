@@ -16,6 +16,8 @@ app.get('users/:id', (req, res) => {
 });
 ```
 
+In this branch you will also find client code that calls the 'users/id' api endpoint and renders the retrieved data on the UI
+
 
 
 
