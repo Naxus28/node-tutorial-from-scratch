@@ -1,11 +1,13 @@
 import express from 'express';
+import users from './data/users';
 const app = express();
 const PORT = 3000;
 
 // get methods are called on page load
-app.get('/', (req, res) => 
-  res.send(`A get request on ${req.url}`)
-);
+app.get('/', (req, res) => {
+  console.log(`A get request on ${req.url}`);
+  res.json(users);
+});
 
 // need to send a post request to trigger this route
 // done either via form submission or ajax (and ajax based libraries)
