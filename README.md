@@ -21,3 +21,4 @@
 4.) a views directory with a simple demo views
 
 5.) an `app.js` file with the app's configuration
+
