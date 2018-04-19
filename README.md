@@ -1,9 +1,27 @@
-# route methods
+# chaining routes with the 'route' method
 
-For a comprehensive list of methods, check the api docs
-[routing guide](https://expressjs.com/en/guide/routing.html)
-[req](https://expressjs.com/en/4x/api.html#req)
-[res](https://expressjs.com/en/4x/api.html#res)
+We can chain routes (get, post, delete, put, etc) to the same path (say "/items") by using the route method as such:
+
+```javascript
+import express from 'express';
+const app = express();
+
+
+app.route('/items')
+  .get((req, res) => {
+    res.send('Get request on /items');
+  })
+  .post((req, res) => {
+    res.send('Post request on /items');
+  })
+  .put((req, res) => {
+    res.send('Put request on /items');
+  })
+  .delete((req, res) => {
+    res.send('Delete request on /items');
+  })
+
+```
 
 
 
