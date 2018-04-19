@@ -34,7 +34,15 @@ app.get('/users/:id', (req, res, next) => {
   next(); // without this function the code wouldn't move to the next callback
 }, (req, res, next) => {
    console.log('Got user'); // this prints on the server
+   res.end();// immediately ends this call--not really useful in this case, but there are scenarios where it can be helpful
 });
+
+
+// download the images directory
+// Transfers the file at path as an “attachment”. 
+// Typically, browsers will prompt the user for download. 
+app.get('/images', (req, res) => res.download('public/img/node-express.png'));
+
 
 // need to send a post request to trigger this route
 // done either via form submission or ajax (and ajax based libraries)
