@@ -1,25 +1,31 @@
-# chaining routes with the 'route' method
+# express.Router()
 
-We can chain routes (get, post, delete, put, etc) to the same path (say "/items") by using the route method as such:
+Express Router allows us to create modular routes
 
 ```javascript
+// routes/catalog.js
 import express from 'express';
 const app = express();
+const router = express.Router();
 
+// middleware that is specific to this router
+router.use((req, res, next) => {
+  console.log('Time: ', Date.now())
+  next()
+})
 
-app.route('/items')
-  .get((req, res) => {
-    res.send('Get request on /items');
-  })
-  .post((req, res) => {
-    res.send('Post request on /items');
-  })
-  .put((req, res) => {
-    res.send('Put request on /items');
-  })
-  .delete((req, res) => {
-    res.send('Delete request on /items');
-  })
+// define the home page route
+router.get('/', (req, res) => res.send('Catalog page'))
+
+// define the about route
+router.get('/items', (req, res) => res.send('Items in catalog'));
+
+module.exports = router
+
+// index.js
+import catalog from './routes/catalog';
+
+app.use('/catalog', catalog);
 
 ```
 
