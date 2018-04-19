@@ -44,24 +44,22 @@ app.get('/users/:id', (req, res, next) => {
 app.get('/images', (req, res) => res.download('public/img/node-express.png'));
 
 
-// need to send a post request to trigger this route
-// done either via form submission or ajax (and ajax based libraries)
-app.post('/newItem', (req, res) => 
-  res.send(`A post request on ${req.url}`)
-);
-
-// need to send a put request to trigger this route
-// done either via form submission or ajax (and ajax based libraries)
-app.put('/item', (req, res) => 
-  res.send(`A put request on ${req.url}`)
-);
-
-// need to send a delete request to trigger this route
-// done either via form submission or ajax (and ajax based libraries)
-app.delete('/item', (req, res) => 
-  res.send(`A delete request on ${req.url}`)
-);
-
+// use the "route" method to be able to chain
+// requests to the same route -- test this with postman
+app.route('/items')
+  .get((req, res) => {
+    res.send('Get request on /items');
+  })
+  .post((req, res) => {
+    res.send('Post request on /items');
+  })
+  .put((req, res) => {
+    res.send('Put request on /items');
+  })
+  .delete((req, res) => {
+    res.send('Delete request on /items');
+  })
+ 
 app.listen(PORT, () => 
   console.log('Server listening on http://localhost:3000')
 );
