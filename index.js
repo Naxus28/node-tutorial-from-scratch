@@ -1,11 +1,15 @@
 import express from 'express';
 import _ from 'lodash';
 import users from './data/users';
+import catalog from './routes/catalog'; // import the catalog router
 const app = express();
 const PORT = 3000;
 
 // serve static files in 'public'
 app.use(express.static('public'));
+
+// use the catalog route
+app.use('/catalog', catalog);
 
 // get methods are called on page load
 // because we are serving static files on the '/' route
@@ -59,7 +63,7 @@ app.route('/items')
   .delete((req, res) => {
     res.send('Delete request on /items');
   })
- 
+
 app.listen(PORT, () => 
   console.log('Server listening on http://localhost:3000')
 );

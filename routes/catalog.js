@@ -1,9 +1,3 @@
-# express.Router()
-
-Express Router allows us to create modular routes
-
-```javascript
-// routes/catalog.js
 import express from 'express';
 const app = express();
 const router = express.Router();
@@ -15,23 +9,11 @@ router.use((req, res, next) => {
 })
 
 // define the home page route
+// http://localhost:3000/catalog--on index.js we define /catalog as the path to this route
 router.get('/', (req, res) => res.send('Catalog page'))
 
 // define the about route
-router.get('/items', (req, res) => res.send('Items in catalog'));
+// http://localhost:3000/catalog/items
+router.get('/items', (req, res) => res.send('Items in the Catalog'));
 
 module.exports = router
-
-// index.js
-import catalog from './routes/catalog';
-
-app.use('/catalog', catalog);
-
-```
-
-
-
-
-
-
-
