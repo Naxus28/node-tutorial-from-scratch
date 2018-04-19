@@ -1,22 +1,33 @@
-# get parameters from url with `req.params`
+# route handlers
 
-Params are included in the api path as such: '/:someParam' 
-and retrived in the callback as such `req.params.someParam`
+Route handlers refers to the code that goes inside the callbaack functions of our route apis
 
 e.g.
 
 ```javascript
-import users from './data/users'; // our users mock array
-import _ from 'lodash';
-
-app.get('users/:id', (req, res) => {
-  // if lodash is not used this can be replaced with a regular Array.prototype.filter method
-  let user = _.find(users, { id: parseInt(req.params.id) }); 
-  res.send(user);
+app.get('/users', (req, res) => {
+  // route handler
 });
 ```
 
-In this branch you will also find client code that calls the 'users/id' api endpoint and renders the retrieved data on the UI
+In express route callback functions provide the function `next()` as the last param that allows us to perform multiple callbacks within the same route. This is useful when we write our own middleware. There can be only one response in the route handler though.
+
+e.g.
+app.get('/users/:id', (req, res, next) => {
+  // route handler
+
+  // need to call 'next' to be able to move to the next piece of middleware or next callback
+  next(); 
+},
+(req, res, next) => {
+  // route handler
+
+
+  next(); //
+
+  etc...
+});
+
 
 
 

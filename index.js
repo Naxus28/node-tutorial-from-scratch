@@ -23,15 +23,17 @@ app.get('/users', (req, res) => {
 
 // if we navigate to http://localhost:3000/users/1 
 // this api sends back the user whose id is 1
-app.get('/users/:id', (req, res) => {
+app.get('/users/:id', (req, res, next) => {
   let user = _.find(users, { id: parseInt(req.params.id) });
   let sucess = {
     message: 'success',
     status: 200,
     data: user
-  }
-
+  } 
   res.send(sucess);
+  next(); // without this function the code wouldn't move to the next callback
+}, (req, res, next) => {
+   console.log('Got user'); // this prints on the server
 });
 
 // need to send a post request to trigger this route

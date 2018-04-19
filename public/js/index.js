@@ -6,7 +6,7 @@ $('document').ready(() => {
 
     // call the api
     $.getJSON(`/users/${val}`, (json, textStatus) => {
-      let html = json.data ? createUserHtml(json.data) : '<p>User not found :/';
+      let html = json.data ? createUserHtml(json.data) : '<p>User not found :/</p>';
       $('.results').html(html);
     });
   });
@@ -23,12 +23,15 @@ $('document').ready(() => {
         key = formatString(key, '_');
       }
 
-      html+= `<p>${key.charAt(0).toUpperCase() + key.substring(1, key.length)}: ${val}</p>`;
+      html+= `<p>${capitalize(key)}: ${val}</p>`;
     }
 
     return html;
   }
 
-  // formats strings
-  let formatString = (string, splitOn) => string.split(splitOn).join(' ');
+  // capitalize string
+  let capitalize = (string) => string.charAt(0).toUpperCase() + string.substring(1, string.length)
+
+  // format strings
+  let formatString = (string, delimiter) => string.split(delimiter).join(' ');
 });
