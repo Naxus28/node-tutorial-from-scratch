@@ -4,7 +4,8 @@
   "description": "express server with es6 support",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./index.js --exec babel-node -e js"
+    "start": "nodemon ./index.js --exec babel-node -e js",
+    "debug": "DEBUG=express* nodemon ./index.js --exec babel-node -e js"
   },
   "repository": {
     "type": "git",
