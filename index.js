@@ -2,14 +2,16 @@ import express from 'express';
 import _ from 'lodash';
 import users from './data/users';
 import catalog from './routes/catalog'; // import the catalog router
+import items from './routes/items'; // import the items router
 const app = express();
 const PORT = 3000;
 
 // serve static files in 'public'
 app.use(express.static('public'));
 
-// use the catalog route
+// use the routes
 app.use('/catalog', catalog);
+app.use('/items', items);
 
 // get methods are called on page load
 // because we are serving static files on the '/' route
@@ -48,21 +50,6 @@ app.get('/users/:id', (req, res, next) => {
 app.get('/images', (req, res) => res.download('public/img/node-express.png'));
 
 
-// use the "route" method to be able to chain
-// requests to the same route -- test this with postman
-app.route('/items')
-  .get((req, res) => {
-    res.send('Get request on /items');
-  })
-  .post((req, res) => {
-    res.send('Post request on /items');
-  })
-  .put((req, res) => {
-    res.send('Put request on /items');
-  })
-  .delete((req, res) => {
-    res.send('Delete request on /items');
-  })
 
 app.listen(PORT, () => 
   console.log('Server listening on http://localhost:3000')
