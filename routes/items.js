@@ -8,7 +8,6 @@ router.use((req, res, next) => {
   next()
 });
 
-
 // define the home page route
 // http://localhost:3000/items--on index.js we define /items as the path to this route
 router.route('/')

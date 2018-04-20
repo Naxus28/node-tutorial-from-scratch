@@ -3,6 +3,7 @@ import _ from 'lodash';
 import users from './data/users';
 import catalog from './routes/catalog'; // import the catalog router
 import items from './routes/items'; // import the items router
+import { errorHandler, logErrors } from './error-handlers/middleware'; // import the items router
 const app = express();
 const PORT = 3000;
 
@@ -17,8 +18,7 @@ app.use(express.json()); // this will parse json data sent to this server
 // extended: true is the default but if we don't pass it express will give us a warning
 app.use(express.urlencoded({extended: true})); 
 
-// now the routes are able to parse json data and urlencoded data
-// the data type is set on the header of the client's post request
+
 
 
 // use the routes
@@ -31,6 +31,12 @@ app.use('/items', items);
 app.get('/', (req, res) => {
   console.log(`A get request on ${req.url}`);
   // res.send(users); // sending static files to '/' so this doesn't work anymore
+});
+
+// throw error here to test error handling middleware
+app.get('/error', (req, res) => {
+  console.log(`A get request on ${req.url}`);
+  throw new Error({ status: 500, message: 'Cannot get something from DB'});
 });
 
 // sends all users
@@ -55,13 +61,15 @@ app.get('/users/:id', (req, res, next) => {
    res.end();// immediately ends this call--not really useful in this case, but there are scenarios where it can be helpful
 });
 
-
 // download the images directory
 // Transfers the file at path as an “attachment”. 
 // Typically, browsers will prompt the user for download. 
 app.get('/images', (req, res) => res.download('public/img/node-express.png'));
 
 
+// global error handling middleware
+app.use('/error', logErrors);
+app.use('/error', errorHandler);
 
 app.listen(PORT, () => 
   console.log('Server listening on http://localhost:3000')
