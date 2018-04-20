@@ -12,6 +12,8 @@ app.get('/', (req, res) => {
 });
 ``` 
 
+Start the server using `npm start`
+
 
 
 
