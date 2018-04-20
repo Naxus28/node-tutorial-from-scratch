@@ -29,6 +29,8 @@ app.use('/catalog', catalog);
 
 ```
 
+Start the server using `npm start`
+
 
 
 
