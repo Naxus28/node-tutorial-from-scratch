@@ -1,45 +1,24 @@
-# chaining routes with the 'route' method
+# default express error handler middleware [https://expressjs.com/en/guide/error-handling.html](https://expressjs.com/en/guide/error-handling.html)
 
-We can chain routes (get, post, delete, put, etc) to the same path (say "/items") by using the route method as such:
+In express, middleware are functions that get invoked in the router callbacks. There are several built in middlewares but we can also write our own middlewares.
 
-```javascript
-import express from 'express';
-const app = express();
+Express handles errors by default, so if we don't handle the error ourselves it sends `error.stack` back to the client. However, it we don't want the client to see the error stack because that may reveal too much about our server and it could potentially be exploited by hackers. Also, the `error.stack` is not very user friendly. 
 
-app.route('/items')
-  .get((req, res) => {
-    res.send('Get request on /items');
-  })
-  .post((req, res) => {
-    res.send('Post request on /items');
-  })
-  .put((req, res) => {
-    res.send('Put request on /items');
-  })
-  .delete((req, res) => {
-    res.send('Delete request on /items');
-  })
-```
+Express provides a default way to handle errors:
 
-To better architect the server, routes should be defined on a separate file, imported into the entry point .js file, and passed as middleware into `app.use()` methods.
-
-e.g.
+Place the following piece of code after all routes and before `app.listen()`:
 
 ```javascript
-// index.js
-import catalog from './routes/catalog'; // import the catalog router
-import items from './routes/items'; // import the items router
+app.use((err, req, res, next) => {
+  // handle error here and send it back to the client 
+  // we can send back html, json, or strings
 
-// use the routes
-app.use('/catalog', catalog);
-app.use('/items', items);
+  res.status(500).send(`Something went wrong :/ ${err}`)
+});
 ```
-
-Start the server using `npm start`
 
 
 Start the server using `npm start`
-
 
 
 
