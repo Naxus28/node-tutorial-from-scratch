@@ -1,25 +1,18 @@
 import express from 'express';
 import _ from 'lodash';
+
+import setMiddleware from './middleware/app-middleware';
+import setErrorMiddleware from './middleware/error-handlers-middleware';
 import users from './data/users';
-import catalog from './routes/catalog'; // import the catalog router
-import items from './routes/items'; // import the items router
-import { errorHandler, logErrors } from './error-handlers/middleware'; // import the items router
+import catalog from './routes/catalog'; 
+import items from './routes/items'; 
+
 const app = express();
 const PORT = 3000;
 
-// serve static files in 'public'
-app.use(express.static('public'));
-
-// place express.json and express.urlencoded
-// middlewares before the routes are initialized
-app.use(express.json()); // this will parse json data sent to this server
-
-// this will parse urlencoded data sent to this server
-// extended: true is the default but if we don't pass it express will give us a warning
-app.use(express.urlencoded({extended: true})); 
-
-
-
+// app-middleware exports a function
+// that expects the express app instance
+setMiddleware(app);
 
 // use the routes
 app.use('/catalog', catalog);
@@ -67,9 +60,9 @@ app.get('/users/:id', (req, res, next) => {
 app.get('/images', (req, res) => res.download('public/img/node-express.png'));
 
 
-// global error handling middleware
-app.use('/error', logErrors);
-app.use('/error', errorHandler);
+// sets the error middleware here
+// to be able to catch route errors
+setErrorMiddleware(app);
 
 app.listen(PORT, () => 
   console.log('Server listening on http://localhost:3000')

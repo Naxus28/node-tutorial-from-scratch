@@ -12,7 +12,6 @@ const errorHandler = (err, req, res, next) => {
   // res.status(500).send({ error: 'Something failed!' }); // this way to send status and body is deprecated
 };
 
-
 const logErrors = (err, req, res, next) => {
   console.log('Error'.red + ' ' + err.stack);
 
@@ -21,8 +20,9 @@ const logErrors = (err, req, res, next) => {
   next(err); 
 };
 
+  // error handling for  /error url
+export default (app) => {
+  app.use('/error', logErrors);
+  app.use('/error', errorHandler);
+};
 
-export {
-  errorHandler,
-  logErrors
-}
