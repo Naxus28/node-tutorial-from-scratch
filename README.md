@@ -17,7 +17,9 @@ app.use((err, req, res, next) => {
 });
 ```
 
-In this demo we moved the middleware functions into their own file to create a clean architecture.
+
+Start the server using `npm start`
+
 
 
 
