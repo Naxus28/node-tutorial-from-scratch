@@ -1,33 +1,42 @@
-# express.Router()
+# chaining routes with the 'route' method
 
-Express Router allows us to create modular routes
+We can chain routes (get, post, delete, put, etc) to the same path (say "/items") by using the route method as such:
 
 ```javascript
-// routes/catalog.js
 import express from 'express';
 const app = express();
-const router = express.Router();
 
-// middleware that is specific to this router
-router.use((req, res, next) => {
-  console.log('Time: ', Date.now())
-  next()
-})
-
-// define the home page route
-router.get('/', (req, res) => res.send('Catalog page'))
-
-// define the about route
-router.get('/items', (req, res) => res.send('Items in catalog'));
-
-module.exports = router
-
-// index.js
-import catalog from './routes/catalog';
-
-app.use('/catalog', catalog);
-
+app.route('/items')
+  .get((req, res) => {
+    res.send('Get request on /items');
+  })
+  .post((req, res) => {
+    res.send('Post request on /items');
+  })
+  .put((req, res) => {
+    res.send('Put request on /items');
+  })
+  .delete((req, res) => {
+    res.send('Delete request on /items');
+  })
 ```
+
+To better architect the server, routes should be defined on a separate file, imported into the entry point .js file, and passed as middleware into `app.use()` methods.
+
+e.g.
+
+```javascript
+// index.js
+import catalog from './routes/catalog'; // import the catalog router
+import items from './routes/items'; // import the items router
+
+// use the routes
+app.use('/catalog', catalog);
+app.use('/items', items);
+```
+
+Start the server using `npm start`
+
 
 Start the server using `npm start`
 
