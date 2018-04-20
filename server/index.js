@@ -51,9 +51,11 @@ app.use(cors());
  */
 app.use((req, res, next) => {
   console.log(`${req.method} on ${req.url}`);
-  // check what the post data looks like--should be parsed by bodyParser
+  //this console shows what the post data looks like--should be parsed by bodyParser
   //e.g. {"term":"scope","definition":"Scope determines the accessibility (visibility) of variables"}
-  console.log(JSON.stringify(req.body)); 
+  // without bodyParser.json() we are not able to get the data from the 'body' from the req object (req.body); 
+  // and without bodyParser.urlencoded() 'req.body' would be 'undefined'
+  console.log('req.body: ', req.body); 
 
 
   // 'next' tells express to move on to the next piece of middleware (or whatever comes next) 
