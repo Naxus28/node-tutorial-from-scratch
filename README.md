@@ -23,6 +23,8 @@ app.route('/items')
 
 ```
 
+Start the server using `npm start`
+
 
 
 
