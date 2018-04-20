@@ -9,6 +9,18 @@ const PORT = 3000;
 // serve static files in 'public'
 app.use(express.static('public'));
 
+// place express.json and express.urlencoded
+// middlewares before the routes are initialized
+app.use(express.json()); // this will parse json data sent to this server
+
+// this will parse urlencoded data sent to this server
+// extended: true is the default but if we don't pass it express will give us a warning
+app.use(express.urlencoded({extended: true})); 
+
+// now the routes are able to parse json data and urlencoded data
+// the data type is set on the header of the client's post request
+
+
 // use the routes
 app.use('/catalog', catalog);
 app.use('/items', items);
