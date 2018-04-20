@@ -1,4 +1,4 @@
-# chaining routes with the 'route' method
+# architecting the app with route files
 
 We can chain routes (get, post, delete, put, etc) to the same path (say "/items") by using the route method as such:
 
