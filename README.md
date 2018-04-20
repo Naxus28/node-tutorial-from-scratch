@@ -1,33 +1,16 @@
-# express.Router()
+# middleware in express
 
-Express Router allows us to create modular routes
+In express, middleware are functions that get invoked in the router callbacks. There are several built in middlewares (e.g. `express.static()`) but we can also write our own middlewares as such
 
 ```javascript
-// routes/catalog.js
-import express from 'express';
-const app = express();
-const router = express.Router();
+app.get('/', (req, res) => {
+  
+  // anything that happens here before we send data
+  // is considered middleware
 
-// middleware that is specific to this router
-router.use((req, res, next) => {
-  console.log('Time: ', Date.now())
-  next()
-})
-
-// define the home page route
-router.get('/', (req, res) => res.send('Catalog page'))
-
-// define the about route
-router.get('/items', (req, res) => res.send('Items in catalog'));
-
-module.exports = router
-
-// index.js
-import catalog from './routes/catalog';
-
-app.use('/catalog', catalog);
-
-```
+  res.send(someData);
+});
+``` 
 
 
 
