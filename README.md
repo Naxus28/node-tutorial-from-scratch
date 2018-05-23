@@ -1,11 +1,27 @@
-# debugging with `DEBUG=express*` [https://expressjs.com/en/guide/debugging.html](https://expressjs.com/en/guide/debugging.html)
+# process
+
+The process object is available globally and gives us the ability to work with the current node process.
  
- > debugging with the `--inspect` flag was already covered on branch `node-25-debug-node` 
+This object allows you to (among other things):  
+1. get environment information such as environment variables 
+2. communicate with the terminal or parent processes through standard input and standard output. 
+3. exit current process. 
+[process](https://nodejs.org/api/process.html)
+ 
 
-We can use the `DEBUG=express* node index.js`  (or `DEBUG=express* nodemon index.js`) directly on the command line or on a script in package.json. In this demo we wrote the script "debug" on package.json, so you can run it with command `npm run debug`
+> If you want to access the process on the terminal, enter the node REPL by typing 'node' and hitting 'enter' then type 'process.env' and hit enter.
+ 
 
-> If you are using es6 you need to combine the debug command with the babel command that transpiles the code.
-e.g. 
-`DEBUG=express* nodemon ./index.js --exec babel-node -e js`
+> IMPORTANT NOTE 
+For development purposes you can set 'NODE_ENV' on the terminal or on this module
+and have development and production tasks executed depending on the environment you set
 
+'NODE_ENV' is not set by default on 'process.env' object (why should it?)
+console.log(process.env.NODE_ENV); // undefined unless you explicitly set it
+
+To set it:
+
+• on the terminal (mac) 'export NODE_ENV=development', (windows) 'SET NODE_ENV=development'
+
+• on the module process.env.NODE_ENV=development
 
