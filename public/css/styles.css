@@ -1,0 +1,21 @@
+body {
+  padding: 20px;
+  background: #26F;
+  color: white;
+}
+h1 {
+  margin-top: 50px;
+  text-align: center;
+}
+.img-container {
+  margin-top: 50px;
+  text-align: center;
+}
+.user-search {
+  margin-top: 50px;
+  text-align: center;
+}
+h3,
+p {
+  margin-bottom: 10px;
+}

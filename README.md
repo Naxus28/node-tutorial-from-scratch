@@ -13,11 +13,15 @@ This object allows you to (among other things):
  
 
 > IMPORTANT NOTE 
-for development purposes you can set 'NODE_ENV' on the terminal or on this module
+For development purposes you can set 'NODE_ENV' on the terminal or on this module
 and have development and production tasks executed depending on the environment you set
+
 'NODE_ENV' is not set by default on 'process.env' object (why should it?)
 console.log(process.env.NODE_ENV); // undefined unless you explicitly set it
+
 To set it:
+
 • on the terminal (mac) 'export NODE_ENV=development', (windows) 'SET NODE_ENV=development'
+
 • on the module process.env.NODE_ENV=development
 

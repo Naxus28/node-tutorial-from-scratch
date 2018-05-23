@@ -22,4 +22,3 @@ checkEnv(); //you set the environment to development
 process.env.NODE_ENV='production';
 checkEnv(); //you set the environment to production
 
-
