@@ -23,6 +23,7 @@ __Steps to debug:__
 2. Open chrome inspector on a different browser window
 3. Click on "configure" for the "Discover network targets" options and enter your network url and port (e.g. localhost:3000)
 4. Under "Remote Target", find the "inspect" link and click on it to open the dev tools
+5. Click on the network tab then expand the "file" option to find the .js files
 5. Use break points on the script we want to debug (gives us access to scope variables and call stack among other things--check console's side panel with options). If we serve with the `--inspect-brk` node will place a breakpoint right on the first line. We can then step over the whole code by using the step over button on the console panel.
 5. Reload the app on http://localhost:3000 and check the browser that has the inspector mode
 Note: Everything that is logged on the terminal window should be logged on the browser console at this point
