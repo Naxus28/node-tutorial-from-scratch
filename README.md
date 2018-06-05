@@ -21,8 +21,9 @@ Listening on http://localhost:3000
 __Steps to debug:__
 1. First open the app on http://localhost:3000 (or the port that you configired)
 2. Open chrome inspector on a different browser window
-3. Open the console tab on chrome debug (not the "profiler")
-4. Use break points on the script we want to debug (gives us access to scope variables and call stack among other things--check console's side panel with options). If we serve with the `--inspect-brk` node will place a breakpoint right on the first line. We can then step over the whole code by using the step over button on the console panel.
+3. Click on "configure" for the "Discover network targets" options and enter your network url and port (e.g. localhost:3000)
+4. Under "Remote Target", find the "inspect" link and click on it to open the dev tools
+5. Use break points on the script we want to debug (gives us access to scope variables and call stack among other things--check console's side panel with options). If we serve with the `--inspect-brk` node will place a breakpoint right on the first line. We can then step over the whole code by using the step over button on the console panel.
 5. Reload the app on http://localhost:3000 and check the browser that has the inspector mode
 Note: Everything that is logged on the terminal window should be logged on the browser console at this point
 
